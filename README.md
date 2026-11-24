@@ -1,31 +1,19 @@
-
 # ε-Greedy Multi-Armed Bandit Simulation
 
-This repository implements a multi-armed bandit simulation using the ε-greedy action-value method, a classic reinforcement learning problem.
+This repository simulates the ε-greedy action-value method for multi-armed bandits. It compares exploration rates across repeated tasks and plots average reward and the percentage of times the agent selects the best arm.
+
+## Run it
+
+Install `numpy`, `matplotlib` and Jupyter, then open `Multi_Armed_Bandit (1).ipynb` and run its first cell. The default experiment uses 2,000 tasks and 2,000 steps for each arm count, so it can take a while. For a quick check, reduce `N_TASKS` and `N_STEPS` near the bottom of the cell. The notebook saves `bandit_results.png` locally when it finishes; this generated image is not stored in the repository.
 
 ## Features
 
 - Simulates bandits with configurable numbers of arms.
 - Implements an ε-greedy agent that balances exploration and exploitation.
-- Tracks:
-  - Average reward over time
-  - Percentage of optimal actions selected
-- Compares multiple ε values (0.1, 0.01, 0) and different numbers of arms (5, 10, 20).
-- Generates plots of performance metrics, saved as `bandit_results.png`.
+- Tracks average reward over time and the percentage of optimal actions selected.
+- Compares ε values of 0.1, 0.01 and 0 across 5, 10 and 20 arms.
+- Generates performance plots.
 
-## Classes
+## Implementation
 
-### `NArmedBandit`
-- Initializes `n` arms with true action values from `N(0,1)`.
-- Provides rewards with Gaussian noise when arms are pulled.
-- Identifies the optimal arm for evaluation.
-
-### `EpsilonGreedyAgent`
-- Selects actions using the ε-greedy strategy.
-- Updates estimated action-values using incremental averages.
-
-## Functions
-
-- `run_simulation(n_arms, epsilons, n_tasks, n_steps)`: Runs multiple bandit tasks and computes metrics.
-- `plot_results(avg_rewards, pct_optimal, epsilons, n_arms, ax1, ax2)`: Plots average rewards and % optimal actions over time.
-
+`NArmedBandit` samples true action values from N(0,1), adds Gaussian reward noise and identifies the optimal arm. `EpsilonGreedyAgent` selects actions and updates estimated values using incremental averages. `run_simulation` repeats tasks and aggregates metrics; `plot_results` visualises them.
